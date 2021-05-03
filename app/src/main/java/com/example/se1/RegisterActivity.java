@@ -68,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             public void onSuccess(AuthResult authResult) {
                                 Toast.makeText(RegisterActivity.this, "Register Successful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                finish();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
