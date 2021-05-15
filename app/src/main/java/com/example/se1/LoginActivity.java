@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText lPassword;
     private Button lLogin;
     private TextView lForget;
+    private TextView lRegister;
     private FirebaseAuth lAuth;
 
     @Override
@@ -38,9 +39,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         lPassword = findViewById(R.id.editTextTextPassword);
         lLogin = findViewById(R.id.button3);
         lForget = findViewById(R.id.textView2);
+        lRegister = findViewById(R.id.textView4);
 
         lLogin.setOnClickListener(this);
         lForget.setOnClickListener(this);
+        lRegister.setOnClickListener(this);
     }
 
     @Override
@@ -50,6 +53,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 login();
                 break;
             case R.id.textView2:
+//                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                break;
+            case R.id.textView4:
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
         }
@@ -57,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void login() {
         String email = lEmail.getText().toString();
-        String password = lLogin.getText().toString();
+        String password = lPassword.getText().toString();
         if(!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             if(!password.isEmpty()){
                 lAuth.signInWithEmailAndPassword(email, password)
@@ -65,7 +71,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             @Override
                             public void onSuccess(AuthResult authResult) {
                                 Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                startActivity(new Intent(LoginActivity.this, UploadActivity.class));
+                                finish();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
