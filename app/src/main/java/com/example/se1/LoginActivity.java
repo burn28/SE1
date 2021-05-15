@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             @Override
                             public void onSuccess(AuthResult authResult) {
                                 Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                startActivity(new Intent(LoginActivity.this, UploadActivity.class));
                                 finish();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
