@@ -1,8 +1,8 @@
 package com.example.se1;
 
 public class upload {
-    private String imageUri;
     private String itemName;
+    private String imageUri;
     private String itemQuantity;
     private String description;
 
@@ -11,8 +11,8 @@ public class upload {
     }
 
     public upload(String imageUri, String itemName, String itemQuantity, String description) {
-        this.imageUri = imageUri;
         this.itemName = itemName;
+        this.imageUri = imageUri;
         this.itemQuantity = itemQuantity;
         this.description = description;
     }

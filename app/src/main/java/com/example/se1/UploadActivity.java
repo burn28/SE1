@@ -95,14 +95,20 @@ public class UploadActivity extends AppCompatActivity implements AdapterView.OnI
 
     @Override //spinner listener
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if(parent.getItemAtPosition(position).equals("Select item's category")){
-            Toast.makeText(this, "Please select item category!", Toast.LENGTH_SHORT).show();
-        }else {
+//        if(parent.getItemAtPosition(position).equals("Select item's category")){
+//            Toast.makeText(this, "Please select item category!", Toast.LENGTH_SHORT).show();
+//        }else {
+//            String category = parent.getItemAtPosition(position).toString();
+//            Toast.makeText(this, category, Toast.LENGTH_SHORT).show();
+//            categoryBool = true;
+//        }
+        if(!parent.getItemAtPosition(position).equals("Select item's category")){
             String category = parent.getItemAtPosition(position).toString();
             Toast.makeText(this, category, Toast.LENGTH_SHORT).show();
             categoryBool = true;
         }
     }
+
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
@@ -194,7 +200,9 @@ public class UploadActivity extends AppCompatActivity implements AdapterView.OnI
                                                 itemName,
                                                 itemQuantity,
                                                 itemDescription);
-                                        databaseRef.child("upload1.0.0").setValue(uploads);
+                                        String uploadId = databaseRef.push().getKey();
+                                        assert uploadId != null;
+                                        databaseRef.child(uploadId).setValue(uploads);
                                     }
                                 });
                             }
@@ -205,7 +213,9 @@ public class UploadActivity extends AppCompatActivity implements AdapterView.OnI
                                 Toast.makeText(UploadActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
-            }else{
+            }else if(spinner.getItemAtPosition(0).equals("Select item's category")){
+                Toast.makeText(this, "Please select a category!", Toast.LENGTH_SHORT).show();
+            } else{
                 Toast.makeText(this, "Please fill all the requirement", Toast.LENGTH_SHORT).show();
             }
         }else{

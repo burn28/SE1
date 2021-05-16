@@ -18,6 +18,7 @@
     <string name="item_name">Item Name</string>
     <string name="todo">TODO</string>
     <string name="change_image">Change image?</string>
+    <string name="post">POST</string>
 
     <string-array name="item_category">
         <item>Select item\'s category</item>
